@@ -1,3 +1,6 @@
+# Parkwise
+ParkWise is a full-stack smart parking web app combining IoT hardware and AI to deliver real-time slot availability, automated vehicle validation, and seamless booking for urban parking.
+
 This project was generated from [create.xyz](https://create.xyz/).
 
 It is a [Next.js](https://nextjs.org/) project built on React and TailwindCSS.
