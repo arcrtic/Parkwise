@@ -8,6 +8,9 @@
 
 ## 📌 Table of Contents
 
+- [Getting Started](#getting-started)
+- [Environment Setup](#environment-setup)
+- [Project Structure](#project-structure)
 - [About the Project](#about-the-project)
 - [Problem Statement](#problem-statement)
 - [Solution](#solution)
@@ -20,6 +23,111 @@
 - [Methodology](#methodology)
 - [Future Scope](#future-scope)
 - [Team](#team)
+
+---
+
+## 🚀 Getting Started
+
+Follow these steps to run ParkWise locally after cloning the repository.
+
+### Prerequisites
+
+- Node.js v18+
+- npm v9+
+- A [Supabase](https://supabase.com) account with a project set up
+- A [Google Cloud](https://console.cloud.google.com/) account with the **Maps JavaScript API** and **Maps Embed API** enabled
+
+### Installation
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/parkwise.git
+cd parkwise/Parkwise
+
+# 2. Install dependencies
+npm install
+
+# 3. Set up environment variables (see below)
+cp .env.example .env.local
+
+# 4. Start the development server
+npm run dev
+```
+
+---
+
+## 🔐 Environment Setup
+
+> **⚠️ IMPORTANT: Never commit `.env.local` to Git. It is already listed in `.gitignore`.**
+
+All sensitive API keys and credentials are stored in environment variables — **not hardcoded in source code**.
+
+### Step 1 — Copy the template
+
+```bash
+cp .env.example .env.local
+```
+
+### Step 2 — Fill in your keys
+
+Open `.env.local` and add your real values:
+
+```env
+# Supabase — get from: Supabase Dashboard → Project Settings → API
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+
+# Google Maps — get from: console.cloud.google.com → APIs & Services → Credentials
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your-google-maps-api-key
+```
+
+### Where to get the keys
+
+| Key | Where to find it |
+|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | [Supabase Dashboard](https://supabase.com/dashboard) → Your Project → **Project Settings → API → Project URL** |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Same page → **Project API Keys → `anon` / `public`** |
+| `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | [Google Cloud Console](https://console.cloud.google.com/) → **APIs & Services → Credentials → Create API Key** (enable Maps JavaScript API + Maps Embed API) |
+
+### Security notes for collaborators
+
+- ✅ `.env.example` — safe to commit, contains only placeholder values
+- ❌ `.env.local` — **never commit this**, your real keys live here
+- The Supabase client is centralized in `src/lib/supabaseClient.js` — **do not create separate Supabase instances** in other files
+- If the app throws `"Missing Supabase environment variables"` on startup, it means `.env.local` is missing or incomplete
+
+---
+
+## 📁 Project Structure
+
+```
+Parkwise/
+├── src/
+│   ├── app/
+│   │   ├── page.jsx          # Main app shell & routing
+│   │   ├── layout.js         # Root layout
+│   │   └── globals.css       # Global styles
+│   ├── components/
+│   │   ├── Login.jsx         # Auth — sign in / sign up / forgot password
+│   │   ├── Home.js           # Explore — map + nearby parking lots
+│   │   ├── Slots.js          # Slot selection grid
+│   │   ├── BookingForm.js    # Guest booking form
+│   │   ├── Payment.js        # Payment methods + receipt + navigation
+│   │   ├── History.js        # Booking history (ongoing/completed/cancelled)
+│   │   ├── Wallet.js         # Wallet balance + add money
+│   │   ├── Support.js        # Help & support
+│   │   └── ParticlesBackground.jsx  # Animated background
+│   ├── lib/
+│   │   └── supabaseClient.js # ✅ Centralized Supabase client (uses env vars)
+│   ├── utilities/
+│   │   └── runtime-helpers.js
+│   └── ParkingSlots.js
+├── .env.example              # ✅ Commit this — safe template with no real keys
+├── .env.local                # ❌ Never commit — your actual secrets go here
+├── .gitignore
+├── next.config.js
+└── package.json
+```
 
 ---
 

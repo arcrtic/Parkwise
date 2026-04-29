@@ -22,7 +22,7 @@ function Home({ userLocation, locationError, mockParkingLots, setSelectedParking
     }
 
     const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyD28jw9Rl6bPQgQIauHX_Vm01Ce6eZRhDE&libraries=places`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`;
     script.async = true;
     script.onload = () => {
       console.log("Google Maps API loaded successfully");

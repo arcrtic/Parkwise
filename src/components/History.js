@@ -79,7 +79,7 @@ function History({ mockHistoryData, setMockHistoryData, setWalletBalance, setMoc
       ? `${currentLocation.lat},${currentLocation.lng}`
       : "19.2183,72.9781"; // Default to Mumbai
     const destination = `${showDetails.coordinates.lat},${showDetails.coordinates.lng}`;
-    const directionsUrl = `https://www.google.com/maps/embed/v1/directions?key=AIzaSyD28jw9Rl6bPQgQIauHX_Vm01Ce6eZRhDE&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&mode=driving`;
+    const directionsUrl = `https://www.google.com/maps/embed/v1/directions?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&mode=driving`;
 
     return (
       <motion.div

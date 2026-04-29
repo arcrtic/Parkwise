@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import { createClient } from "@supabase/supabase-js";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { motion } from "framer-motion";
 import ParticlesBackground from "../components/ParticlesBackground";
@@ -12,10 +11,7 @@ import History from "../components/History";
 import BookingForm from "../components/BookingForm";
 import Login from "../components/Login";
 import Support from "../components/Support";
-
-const supabaseUrl = "https://gkivayayjpevqvrutkez.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdraXZheWF5anBldnF2cnV0a2V6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEyODIxNjIsImV4cCI6MjA1Njg1ODE2Mn0.ZaWDcAlZQY-u3svrxJ8UC5poDd4D_dtCWopsBzaD4hA";
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { supabase } from "../lib/supabaseClient";
 
 function MainComponent() {
   const [activeTab, setActiveTab] = useState("login");
